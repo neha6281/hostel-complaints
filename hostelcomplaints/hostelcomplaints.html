@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hostel Complaints Registration Form</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Hostel Complaints Registration Form</h1>
+    </header>
+    <div class="container">
+        <div class="form-container">
+            <form action="#" method="post" name="submit-to-google-sheet">
+                <h2>Register a Complaint</h2>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                
+                <label for="rollno">Roll No:</label>
+                <input type="text" id="rollno" name="rollno" placeholder="Enter your roll no" required>
+                
+                <label for="roomno">Room No:</label>
+                <input type="text" id="roomno" name="roomno" placeholder="Enter your room no" required>
+                
+                <label for="complaint">Complaint:</label>
+                <input type="text" id="complaint" name="complaint" placeholder="Enter your complaint" required></textarea>
+                <br>
+                <br>
+
+                <input type="submit" value="Submit" name="submit">
+                <span id='success'></span>
+                <!-- <button type="submit">Submit</button> -->
+            </form>
+
+        </div>
+    </div>
+    <footer>
+        <p>Hostel Complaints Registration Form</p>
+    </footer>
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxNNXbiu9FVkyoOj1fmWeHGF6snGNmM_NE8NtRwBDjZWnLM85EiJAK-46W9HVf1WlW3HA/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const success = document.getElementById('success')
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        success.innerHTML="data succesfully submit";
+      })
+      .catch(error => console.error('Error!', error.message))})
+</script>
+</body>
+</html>
